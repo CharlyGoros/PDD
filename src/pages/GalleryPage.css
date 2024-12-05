@@ -1,0 +1,74 @@
+/* Fondo general de la página */
+.gallery-page {
+    padding: 20px;
+    background-color: #000;
+    /* Fondo negro */
+    min-height: 100vh;
+    /* Para llenar la pantalla */
+    color: #fff;
+    /* Texto blanco */
+}
+
+/* Título de la página */
+.gallery-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    /* Mantén el texto blanco */
+}
+
+/* Ajuste de la cuadrícula */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Filas de 3 columnas */
+    gap: 30px;
+    /* Separación entre las cards */
+    padding: 20px;
+}
+
+/* Estilo de las cards */
+.card {
+    background-color: #1c1c1c;
+    /* Fondo oscuro para las cards */
+    border: 1px solid #333;
+    /* Borde gris oscuro */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    /* Efecto al flotar */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    /* Mayor altura para destacar las imágenes */
+    object-fit: cover;
+    /* Recorta y ajusta la imagen */
+}
+
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: #fff;
+    /* Texto blanco */
+    margin-bottom: 15px;
+}
+
+.card-description {
+    font-size: 1.1rem;
+    color: #bbb;
+    /* Texto gris claro */
+    line-height: 1.6;
+}
