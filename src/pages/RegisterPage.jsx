@@ -1,6 +1,6 @@
 import React from 'react';
-import { Input } from '../ui/Input';
-import { Button } from '../ui/Button';
+import { Input } from '../ui/Input'; // Asegúrate de que ../ui/Input exista
+import { Button } from '../ui/Button'; // Asegúrate de que ../ui/Button exista
 import PropTypes from 'prop-types';
 
 export function RegisterPage({ onSubmit, isLogin }) {
@@ -55,7 +55,8 @@ export function RegisterPage({ onSubmit, isLogin }) {
     );
 }
 
-AuthForm.propTypes = {
+// Corregido el nombre del componente
+RegisterPage.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     isLogin: PropTypes.bool.isRequired,
 };

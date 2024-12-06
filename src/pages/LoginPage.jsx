@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthForm } from './AuthForm';
+import RegisterPage from './RegisterPage'; // Cambiar AuthForm a RegisterPage
 import { UserRound } from 'lucide-react';
 
 export function LoginPage() {
@@ -28,7 +28,7 @@ export function LoginPage() {
                     </p>
                 </div>
 
-                <AuthForm onSubmit={handleSubmit} isLogin={isLogin} />
+                <RegisterPage onSubmit={handleSubmit} /> {/* Cambiar AuthForm por RegisterPage */}
 
                 <div className="mt-6 text-center">
                     <button
