@@ -3,7 +3,7 @@ import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import PropTypes from 'prop-types';
 
-export function AuthForm({ onSubmit, isLogin }) {
+export function RegisterPage({ onSubmit, isLogin }) {
     const [formData, setFormData] = React.useState({
         email: '',
         password: '',

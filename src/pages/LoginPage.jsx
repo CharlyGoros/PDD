@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthForm } from './AuthForm';
 import { UserRound } from 'lucide-react';
 
-export function AuthContainer() {
+export function LoginPage() {
     const [isLogin, setIsLogin] = React.useState(true);
 
     const handleSubmit = (formData) => {
