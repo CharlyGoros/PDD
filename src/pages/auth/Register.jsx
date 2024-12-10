@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { createUser } from '../../api'; // Asegúrate de ajustar la ruta según tu estructura de carpetas.
+import { createUser } from '../../services/api'; // Asegúrate de ajustar la ruta según tu estructura de carpetas.
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -26,10 +26,10 @@ const Register = () => {
       // Llamar a la API para registrar al usuario
       await createUser({
         name: formData.name,
-        lastname: formData.lastname,
+        lastName: formData.lastname,
         email: formData.email,
-        password: formData.password,
-        ege: formData.age,
+        // password: formData.password,
+        age: formData.age,
       });
 
       setSuccess(true); // Mostrar mensaje de éxito

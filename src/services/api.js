@@ -71,8 +71,9 @@ export const deleteAllCategories = async () => {
 
 export const createUser = async (userData) => {
     try {
-        const { data } = await api.post('/users', userData);
-        return new User(data);
+        console.log('userData:', userData);
+        await api.post('/users', userData);
+        return;
     } catch (error) {
         console.error('Error creating user:', error);
         throw error;
