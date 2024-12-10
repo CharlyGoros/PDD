@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navigation/Navbar';
 import Footer from './components/Footer/Footer';
+import ArtworksList from './components/ArtworksList/ArtworksList';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -16,7 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/category/:categoryId" element={<ArtworksList />} />
+            <Route path="/categories/:categoryId" element={<ArtworksList />} />
           </Routes>
         </main>
         <Footer />

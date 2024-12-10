@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchCategories } from '../services/api';
+import { getCategories } from '../services/api';
 import CategoryCard from '../components/CategoryCard/CategoryCard';
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const data = await fetchCategories();
+        const data = await getCategories();
         setCategories(data);
       } catch (err) {
         setError('Failed to load categories');

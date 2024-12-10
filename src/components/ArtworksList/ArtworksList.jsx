@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ArtworksList.css';
+import { getArtworksByCategory } from '../../services/api';
 
 const ArtworksList = () => {
     const { categoryId } = useParams();
@@ -11,12 +12,10 @@ const ArtworksList = () => {
     useEffect(() => {
         const fetchArtworks = async () => {
             try {
-                // Simular llamada a API (reemplaza con tu API real)
-                const response = await fetch(`/api/categories/${categoryId}/artworks`);
-                const data = await response.json();
-                setArtworks(data);
+                const response = await getArtworksByCategory(categoryId);
+                setArtworks(response);
             } catch (err) {
-                setError('Failed to fetch artworks');
+                setError(`Failed to fetch artworks. ${err}`);
             } finally {
                 setLoading(false);
             }
@@ -35,6 +34,14 @@ const ArtworksList = () => {
         );
     }
 
+    if (artworks.length === 0) {
+        return (
+            <div className="alert alert-info text-center" role="alert">
+                No artworks found.
+            </div>
+        );
+    }
+    
     if (error) {
         return (
             <div className="alert alert-danger text-center" role="alert">
@@ -42,22 +49,24 @@ const ArtworksList = () => {
             </div>
         );
     }
-
     return (
         <div className="container my-5">
-            <h1 className="text-center mb-5">Artworks</h1>
+            <h1 className="text-center mb-5 text-light">Artworks</h1>
             <div className="row g-4">
                 {artworks.map((artwork) => (
-                    <div className="col-12 col-md-6" key={artwork._id}>
-                        <div className="card shadow-sm">
-                            <img
-                                src={artwork.images[0]}
-                                className="card-img-top"
-                                alt={artwork.title}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{artwork.title}</h5>
-                                <p className="card-text">{artwork.description}</p>
+                    <div className="container" key={artwork._id}>
+                        <div className="row align-items-center pb-3">
+                        <div className="col-md-4">
+    <img 
+        src={artwork.images[0]} 
+        alt={artwork.title || "Artwork image"} 
+        style={{ width: '200px', height: '200px', objectFit: 'cover' }} 
+    />
+</div>
+
+                            <div className="col-md-8 text-light">
+                                <h5 className="text-uppercase text-light">{artwork.title}</h5>
+                                <p>{artwork.description}</p>
                             </div>
                         </div>
                     </div>
@@ -65,6 +74,7 @@ const ArtworksList = () => {
             </div>
         </div>
     );
+    
 };
 
 export default ArtworksList;
