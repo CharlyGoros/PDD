@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Auth.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,60 +23,62 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <h2>Create Account</h2>
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
+        <h2 className="text-center mb-4">Create Account</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Full Name</label>
             <input
               type="text"
               id="name"
               name="name"
+              className="form-control"
               value={formData.name}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               type="email"
               id="email"
               name="email"
+              className="form-control"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
             <input
               type="password"
               id="password"
               name="password"
+              className="form-control"
               value={formData.password}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+          <div className="mb-3">
+            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
             <input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
+              className="form-control"
               value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
           </div>
-          <button type="submit" className="auth-submit">
-            Register
-          </button>
+          <button type="submit" className="btn btn-primary w-100">Register</button>
         </form>
-        <p className="auth-redirect">
-          Already have an account? <Link to="/login">Login here</Link>
+        <p className="text-center mt-3">
+          Already have an account? <Link to="/login" className="text-primary">Login here</Link>
         </p>
       </div>
     </div>
