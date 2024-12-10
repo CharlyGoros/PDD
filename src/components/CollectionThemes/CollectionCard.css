@@ -1,0 +1,32 @@
+.collection-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  max-width: 300px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.collection-card:hover {
+  transform: translateY(-5px);
+}
+
+.collection-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.collection-card h2 {
+  margin: 1rem 0;
+  color: white;
+}
+
+.collection-card p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
