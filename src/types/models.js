@@ -52,8 +52,8 @@ export class Category {
     this.title = title;
     this.description = description;
     this.image = image;
-    this.artWorks = Array.isArray(artWorks) 
-      ? artWorks.map(artWork => new ArtWork(artWork)) 
+    this.artWorks = Array.isArray(artWorks)
+      ? artWorks.map(artWork => new ArtWork(artWork))
       : [];
   }
 
