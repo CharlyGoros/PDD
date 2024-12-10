@@ -26,13 +26,15 @@ const Register = () => {
       // Llamar a la API para registrar al usuario
       await createUser({
         name: formData.name,
+        lastname: formData.lastname,
         email: formData.email,
         password: formData.password,
+        ege: formData.age,
       });
 
       setSuccess(true); // Mostrar mensaje de éxito
       setError(null); // Limpiar errores
-      setFormData({ name: '', email: '', password: '', confirmPassword: '' }); // Limpiar formulario
+      setFormData({ name: '', lastname: '', email: '', password: '', confirmPassword: '', age: '' }); // Limpiar formulario
     } catch (err) {
       setError('Failed to register user. Please try again.');
       console.error('Registration error:', err);
@@ -54,13 +56,25 @@ const Register = () => {
         {success && <div className="alert alert-success">Registration successful!</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="name" className="form-label">Full Name</label>
+            <label htmlFor="name" className="form-label">Name</label>
             <input
               type="text"
               id="name"
               name="name"
               className="form-control"
               value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lastname" className="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              className="form-control"
+              value={formData.lastname}
               onChange={handleChange}
               required
             />
@@ -73,6 +87,18 @@ const Register = () => {
               name="email"
               className="form-control"
               value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="age" className="form-label">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              className="form-control"
+              value={formData.age}
               onChange={handleChange}
               required
             />
