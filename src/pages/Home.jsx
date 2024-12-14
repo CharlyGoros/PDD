@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import { getCategories } from '../services/api';
 import CategoryCard from '../components/CategoryCard/CategoryCard';
+import useAuth from '../hooks/useAuth';
 
 function Home() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const data = await getCategories();
+        const data = await getCategories(token);
         setCategories(data);
       } catch (err) {
         setError('Failed to load categories');

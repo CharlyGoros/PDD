@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Category, User, ArtWork } from '../types/models';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api-pdd.netlify.app/.netlify/functions/server/';
+
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -29,10 +30,15 @@ export const getCategoryById = async (id) => {
     }
 };
 
-export const getCategories = async () => {
+export const getCategories = async (token) => {
     try {
-        const { data } = await api.get('/categories');
-        return data.map(category => new Category(category));
+        const response = await api.get('/categories', {
+            headers: {
+                authorization: token,
+            },
+        });
+        console.log(response);
+        return response['data']['data'].map(category => new Category(category));
     } catch (error) {
         console.error('Error fetching categories:', error);
         throw error;

@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 const ProtectedRoute = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
-  // console.log('user:', user);
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -12,9 +12,8 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  console.log('user.role:', user.role);
-  console.log('adminOnly:', adminOnly);
-  if (adminOnly && user.role !== 1) { // 1 is ADMIN role
+
+  if (adminOnly && user.role !== 1) {
     return <Navigate to="/" replace />;
   }
 
