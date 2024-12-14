@@ -89,10 +89,14 @@ export const getUserById = async (id) => {
         throw error;
     }
 };
-
-export const getUsers = async () => {
+export const getUsers = async (token) => {
     try {
-        const { data } = await api.get('/users');
+        console.log('token:', token);
+        const { data } = await api.get('/users', {
+            headers: {
+                authorization: token,
+            },
+        });
         return data.map(user => new User(user));
     } catch (error) {
         console.error('Error fetching users:', error);

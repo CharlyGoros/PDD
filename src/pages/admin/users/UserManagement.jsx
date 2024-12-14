@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {  getUsers, makeUserAdmin, deleteUserById } from '../../../services/api';
 import './UserManagement.css';
-
+import useAuth from '../../../hooks/useAuth';
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,10 +11,12 @@ const UserManagement = () => {
     loadUsers();
   }, []);
 
+  const { token } = useAuth();
   const loadUsers = async () => {
     try {
-      const data = await getUsers();
-      setUsers(data);
+      const response = await getUsers(token);
+      console.log(response);
+      setUsers(response['data']);
     } catch (err) {
       setError(err.message);
     } finally {
