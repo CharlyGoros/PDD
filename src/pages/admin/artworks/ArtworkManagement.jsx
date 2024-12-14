@@ -24,7 +24,7 @@ const ArtworkManagement = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await getCategories(token);
+      const data = await getCategories();
       setCategories(data);
       if (data.length > 0) {
         setSelectedCategory(data[0]);

@@ -119,7 +119,7 @@ export const getUsers = async (token) => {
     try {
         const { data } = await api.get('/users', {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return data['data'].map(user => new User(user));
@@ -168,14 +168,18 @@ export const deleteAllUsers = async (token) => {
         throw error;
     }
 };
-
 export const makeUserAdmin = async (token, id) => {
     try {
-        await api.put(`/users/${id}/makeAdmin`, {
-            headers: {
-                authorization: token,
-            },
-        });
+        const { data } = await api.put(
+            `/users/${id}/makeAdmin`,
+            {},
+            {
+                headers: {
+                    'authorization': 'Bearer ' + token,
+                },
+            }
+        );
+        return data;
     } catch (error) {
         console.error(`Error making user ${id} admin:`, error);
         throw error;
@@ -184,16 +188,22 @@ export const makeUserAdmin = async (token, id) => {
 
 export const makeUserGuest = async (token, id) => {
     try {
-        await api.put(`/users/${id}/makeGuest`, {
-            headers: {
-                authorization: token,
-            },
-        });
+        console.log(token);
+        await api.put(
+            `/users/${id}/makeGuest`,
+            {},
+            {
+                headers: {
+                    'authorization': 'Bearer ' + token,
+                },
+            }
+        );
     } catch (error) {
         console.error(`Error making user ${id} guest:`, error);
         throw error;
     }
 };
+
 
 export const createArtwork = async (token, categoryId, artworkData) => {
     try {

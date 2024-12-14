@@ -11,6 +11,7 @@ import CategoryManagement from './pages/Admin/categories/CategoryManagement';
 import ArtworkManagement from './pages/Admin/artworks/ArtworkManagement';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
+import About from './pages/About/About';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/categories/:categoryId" element={<ArtworksList />} />
+            <Route path="/about" element={<About />} />
 
             <Route
               path="/admin"

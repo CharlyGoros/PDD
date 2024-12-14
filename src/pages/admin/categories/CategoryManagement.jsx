@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { getCategories, createCategory, updateCategory, deleteCategoryById } from '../../../services/api';
 import CategoryForm from './CategoryForm';
 import './CategoryManagement.css';
-import useAuth from '../../../hooks/useAuth';
 
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingCategory, setEditingCategory] = useState(null);
-  const { token } = useAuth();
 
   useEffect(() => {
     loadCategories();
@@ -17,7 +15,7 @@ const CategoryManagement = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await getCategories(token);
+      const data = await getCategories();
       setCategories(data);
     } catch (err) {
       setError(err.message);
