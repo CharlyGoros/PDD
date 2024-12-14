@@ -13,7 +13,7 @@ const Footer = () => {
           <p>Horarios: 10:00 - 18:00</p>
         </div>
         <div className="footer-section">
-          <h3>Quick Links</h3>
+          <h3>Links relevantes</h3>
           <Link to="/about">Sobre nosotros</Link>
           <Link to="/contact">Contacto</Link>
           <Link to="/support">Apoyanos</Link>
