@@ -1,21 +1,36 @@
 import { create } from 'zustand';
 import { login } from '../services/api';
 
+// Recuperar datos del usuario y token desde Local Storage al cargar
+const getStoredAuthData = () => {
+  const storedUser = localStorage.getItem('user');
+  const storedToken = localStorage.getItem('token');
+  return {
+    user: storedUser ? JSON.parse(storedUser) : null,
+    token: storedToken || null,
+  };
+};
+
 const useAuth = create((set) => ({
-  user: null,
-  token: null,
+  // Estado inicial con datos recuperados desde Local Storage
+  ...getStoredAuthData(),
   loading: false,
   error: null,
 
+  // Iniciar sesión
   login: async (formData) => {
     set({ loading: true, error: null });
     try {
       const response = await login(formData);
       const user = response['data']['data']['user'];
       const token = response['data']['data']['token'];
-      set({ user: user, loading: false });
-      set({ token: token, loading: false });
 
+      // Actualizar estado
+      set({ user, token, loading: false });
+
+      // Guardar en Local Storage
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
 
       return user;
     } catch (error) {
@@ -24,8 +39,14 @@ const useAuth = create((set) => ({
     }
   },
 
+  // Cerrar sesión
   logout: () => {
-    set({ user: null, error: null });
+    // Limpiar estado
+    set({ user: null, token: null, error: null });
+
+    // Eliminar datos de Local Storage
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   },
 }));
 
