@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import {  getUsers, makeUserAdmin, makeUserGuest, deleteUserById } from '../../../services/api';
+import { getUsers, makeUserAdmin, makeUserGuest, deleteUserById } from '../../../services/api';
 import './UserManagement.css';
 import useAuth from '../../../hooks/useAuth';
+
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const { token } = useAuth();
+
   useEffect(() => {
     loadUsers();
-  });
+  }, []); // Corregido: Se ejecuta solo una vez al montar el componente
 
   const loadUsers = async () => {
     try {
@@ -25,8 +27,7 @@ const UserManagement = () => {
 
   const handleRoleChange = async (userId, makeAdmin) => {
     try {
-      console.log(token);
-      if (makeAdmin){
+      if (makeAdmin) {
         await makeUserAdmin(token, userId);
       } else {
         await makeUserGuest(token, userId);
@@ -39,7 +40,7 @@ const UserManagement = () => {
 
   const handleDeleteUser = async (userId) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
-    
+
     try {
       await deleteUserById(userId);
       await loadUsers();
@@ -64,8 +65,8 @@ const UserManagement = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{
-            users.map((user) => (
+          <tbody>
+            {users.map((user) => (
               <tr key={user._id}>
                 <td>{user.name} {user.lastName}</td>
                 <td>{user.email}</td>
@@ -92,4 +93,5 @@ const UserManagement = () => {
     </div>
   );
 };
+
 export default UserManagement;
