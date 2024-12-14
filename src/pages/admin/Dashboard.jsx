@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { FaUsers, FaImages, FaFolder } from 'react-icons/fa';
 import './Dashboard.css';
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('users');
 
   return (
