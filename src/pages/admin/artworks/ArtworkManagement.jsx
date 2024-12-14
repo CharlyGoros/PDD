@@ -13,29 +13,41 @@ const ArtworkManagement = () => {
   const [editingArtwork, setEditingArtwork] = useState(null);
   const  {token} = useAuth();
   useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await getCategories(token); // Pasa el token correctamente.
+        setCategories(data);
+        if (data.length > 0) {
+          setSelectedCategory(data[0]);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
     loadCategories();
-  });
-
+  }, [token]); // La dependencia aquí es `token`.
+  
   useEffect(() => {
     if (selectedCategory) {
+      const loadArtworks = async (categoryId) => {
+        try {
+          const data = await getArtworksByCategory(token, categoryId);
+          setArtworks(data);
+        } catch (err) {
+          setError(err.message);
+        }
+      };
+  
       loadArtworks(selectedCategory._id);
     }
-  });
+  }, [selectedCategory, token]); // Dependencias: `selectedCategory` y `token`.
+  
+  
 
-  const loadCategories = async () => {
-    try {
-      const data = await getCategories();
-      setCategories(data);
-      if (data.length > 0) {
-        setSelectedCategory(data[0]);
-      }
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  
   const loadArtworks = async (categoryId) => {
     try {
       const data = await getArtworksByCategory(token,categoryId);
