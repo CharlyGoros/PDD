@@ -83,7 +83,7 @@ const CategoryManagement = () => {
             </div>
             <div className="category-actions">
               <button onClick={() => setEditingCategory(category)}>Editar</button>
-              <button onClick={() => handleDeleteCategory(category._id)}>Borrar</button>
+              <button onClick={() => handleDeleteCategory(category._id)}>Eliminar</button>
             </div>
           </div>
         ))}

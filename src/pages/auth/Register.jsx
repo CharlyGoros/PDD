@@ -51,12 +51,12 @@ const Register = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
-        <h2 className="text-center mb-4">Create Account</h2>
+        <h2 className="text-center mb-4">Crear una cuenta</h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        {success && <div className="alert alert-success">Registration successful!</div>}
+        {success && <div className="alert alert-success">¡Registro exitoso!</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="name" className="form-label">Name</label>
+            <label htmlFor="name" className="form-label">Nombre</label>
             <input
               type="text"
               id="name"
@@ -68,7 +68,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="lastname" className="form-label">Last Name</label>
+            <label htmlFor="lastname" className="form-label">Apellido</label>
             <input
               type="text"
               id="lastname"
@@ -92,7 +92,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="age" className="form-label">Age</label>
+            <label htmlFor="age" className="form-label">Edad</label>
             <input
               type="number"
               id="age"
@@ -104,7 +104,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label">Contraseña</label>
             <input
               type="password"
               id="password"
@@ -116,7 +116,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="form-label">Confirmar Contraseña</label>
             <input
               type="password"
               id="confirmPassword"
@@ -127,10 +127,10 @@ const Register = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Register</button>
+          <button type="submit" className="btn btn-primary w-100">Registrar</button>
         </form>
         <p className="text-center mt-3">
-          Already have an account? <Link to="/login" className="text-primary">Login here</Link>
+        ¿Ya tienes una cuenta? <Link to="/login" className="text-primary">Iniciar Sesion</Link>
         </p>
       </div>
     </div>
