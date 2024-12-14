@@ -42,7 +42,7 @@ const CategoryForm = ({ onSubmit, initialData, onCancel }) => {
   return (
     <form onSubmit={handleSubmit} className="category-form">
       <div className="form-group">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">Titulo</label>
         <input
           type="text"
           id="title"
@@ -53,7 +53,7 @@ const CategoryForm = ({ onSubmit, initialData, onCancel }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Descripcion</label>
         <textarea
           id="description"
           name="description"
@@ -63,7 +63,7 @@ const CategoryForm = ({ onSubmit, initialData, onCancel }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="image">Image URL</label>
+        <label htmlFor="image">Imagen URL</label>
         <input
           type="url"
           id="image"
@@ -75,7 +75,7 @@ const CategoryForm = ({ onSubmit, initialData, onCancel }) => {
       </div>
       <div className="button-group">
         <button type="submit" className="submit-button">
-          {initialData ? 'Update Category' : 'Create Category'}
+          {initialData ? 'Actualizar Categoria' : 'Crear Categoria'}
         </button>
         {initialData && (
           <button

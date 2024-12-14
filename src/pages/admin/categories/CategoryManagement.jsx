@@ -60,12 +60,12 @@ const CategoryManagement = () => {
     setEditingCategory(null);
   };
 
-  if (loading) return <div className="loading">Loading categories...</div>;
+  if (loading) return <div className="loading">Cargando categorias...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="category-management">
-      <h2>Category Management</h2>
+      <h2>Gestión de categorías</h2>
       <CategoryForm
         onSubmit={editingCategory ? 
           (data) => handleUpdateCategory(editingCategory._id, data) : 
@@ -82,8 +82,8 @@ const CategoryManagement = () => {
               <p>{category.description}</p>
             </div>
             <div className="category-actions">
-              <button onClick={() => setEditingCategory(category)}>Edit</button>
-              <button onClick={() => handleDeleteCategory(category._id)}>Delete</button>
+              <button onClick={() => setEditingCategory(category)}>Editar</button>
+              <button onClick={() => handleDeleteCategory(category._id)}>Borrar</button>
             </div>
           </div>
         ))}
