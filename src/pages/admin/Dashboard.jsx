@@ -15,21 +15,21 @@ export const Dashboard = () => {
             className={`nav-item ${activeSection === 'users' ? 'active' : ''}`}
             onClick={() => setActiveSection('users')}
           >
-            <FaUsers /> Users
+            <FaUsers /> Usuarios
           </Link>
           <Link 
             to="/admin/categories" 
             className={`nav-item ${activeSection === 'categories' ? 'active' : ''}`}
             onClick={() => setActiveSection('categories')}
           >
-            <FaFolder /> Categories
+            <FaFolder /> Categorias
           </Link>
           <Link 
             to="/admin/artworks" 
             className={`nav-item ${activeSection === 'artworks' ? 'active' : ''}`}
             onClick={() => setActiveSection('artworks')}
           >
-            <FaImages /> Artworks
+            <FaImages /> Obras de Arte
           </Link>
         </nav>
       </aside>
