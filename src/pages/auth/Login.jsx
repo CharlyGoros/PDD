@@ -39,7 +39,7 @@ const Login = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
-        <h2 className="text-center mb-4">Welcome Back</h2>
+        <h2 className="text-center mb-4">Bienvenido de nuevo</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email</label>
@@ -54,7 +54,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label">Contraseña</label>
             <input
               type="password"
               id="password"
@@ -65,10 +65,10 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Login</button>
+          <button type="submit" className="btn btn-primary w-100">Iniciar Sesion</button>
         </form>
         <p className="text-center mt-3">
-          Dont have an account? <Link to="/register" className="text-primary">Register here</Link>
+        ¿No tienes una cuenta? <Link to="/register" className="text-primary">Registrarme</Link>
         </p>
       </div>
     </div>

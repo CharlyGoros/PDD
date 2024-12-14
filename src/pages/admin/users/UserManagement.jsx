@@ -39,7 +39,7 @@ const UserManagement = () => {
   };
 
   const handleDeleteUser = async (userId) => {
-    if (!window.confirm('Are you sure you want to delete this user?')) return;
+    if (!window.confirm('¿Estás seguro de que deseas eliminar este usuario?')) return;
 
     try {
       await deleteUserById(token, userId);
@@ -49,7 +49,7 @@ const UserManagement = () => {
     }
   };
 
-  if (loading) return <div className="loading">Loading users...</div>;
+  if (loading) return <div className="loading">Cargando Usuarios...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
@@ -59,10 +59,10 @@ const UserManagement = () => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Nombre</th>
               <th>Email</th>
-              <th>Role</th>
-              <th>Actions</th>
+              <th>Rol</th>
+              <th>Accion</th>
             </tr>
           </thead>
           <tbody>
@@ -70,19 +70,19 @@ const UserManagement = () => {
               <tr key={user._id}>
                 <td>{user.name} {user.lastName}</td>
                 <td>{user.email}</td>
-                <td>{user.role === 1 ? 'Admin' : 'Guest'}</td>
+                <td>{user.role === 1 ? 'Admin' : 'Invitado'}</td>
                 <td>
                   <button
                     onClick={() => handleRoleChange(user._id, user.role === 0)}
                     className="role-button"
                   >
-                    Make {user.role === 1 ? 'Guest' : 'Admin'}
+                    Hacer {user.role === 1 ? 'Invitado' : 'Admin'}
                   </button>
                   <button
                     onClick={() => handleDeleteUser(user._id)}
                     className="delete-button"
                   >
-                    Delete
+                    Eliminar
                   </button>
                 </td>
               </tr>
