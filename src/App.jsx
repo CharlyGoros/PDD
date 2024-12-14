@@ -5,10 +5,10 @@ import ArtworksList from './components/ArtworksList/ArtworksList';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import Dashboard from './pages/admin/Dashboard';
+import Dashboard from './pages/Admin/Dashboard';
 import UserManagement from './pages/admin/users/UserManagement';
-import CategoryManagement from './pages/admin/categories/CategoryManagement';
-import ArtworkManagement from './pages/admin/artworks/ArtworkManagement';
+import CategoryManagement from './pages/Admin/categories/CategoryManagement';
+import ArtworkManagement from './pages/Admin/artworks/ArtworkManagement';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
 
