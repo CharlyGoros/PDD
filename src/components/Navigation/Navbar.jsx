@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css'; // Opcional para estilos personalizados
 import useAuth from '../../hooks/useAuth'; // Importamos el hook useAuth
@@ -55,14 +54,6 @@ const Navbar = () => {
 
           {/* Auth Links */}
           <div className="d-flex ms-3">
-<<<<<<< Updated upstream
-            <Link className="btn btn-outline-light me-2" to="/login">
-              Inicar sesion
-            </Link>
-            <Link className="btn btn-primary" to="/register">
-              Registrarse
-            </Link>
-=======
             {!user ? (
               <>
                 <Link className="btn btn-outline-light me-2" to="/login">
@@ -77,7 +68,6 @@ const Navbar = () => {
                 Log out
               </button>
             )}
->>>>>>> Stashed changes
           </div>
         </div>
       </div>

@@ -15,8 +15,6 @@ const Login = () => {
     e.preventDefault();
     try {
       let user = await login({formData});
-      console.log(user['role']);
-      console.log(user['role'] ===1);
 
       if (user['role'] === 1) {
         navigate('/admin/users');

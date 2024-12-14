@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {  getUsers, makeUserAdmin, deleteUserById } from '../../../services/api';
+import {  getUsers, makeUserAdmin, makeUserGuest, deleteUserById } from '../../../services/api';
 import './UserManagement.css';
 import useAuth from '../../../hooks/useAuth';
 const UserManagement = () => {
@@ -25,7 +25,12 @@ const UserManagement = () => {
 
   const handleRoleChange = async (userId, makeAdmin) => {
     try {
-      await makeUserAdmin(userId, makeAdmin);
+      console.log(token);
+      if (makeAdmin){
+        await makeUserAdmin(token, userId);
+      } else {
+        await makeUserGuest(token, userId);
+      }
       await loadUsers();
     } catch (err) {
       setError(err.message);

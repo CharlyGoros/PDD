@@ -171,7 +171,7 @@ export const deleteAllUsers = async (token) => {
 
 export const makeUserAdmin = async (token, id) => {
     try {
-        await api.post(`/users/${id}/makeAdmin`, {
+        await api.put(`/users/${id}/makeAdmin`, {
             headers: {
                 authorization: token,
             },
@@ -184,7 +184,7 @@ export const makeUserAdmin = async (token, id) => {
 
 export const makeUserGuest = async (token, id) => {
     try {
-        await api.post(`/users/${id}/makeGuest`, {
+        await api.put(`/users/${id}/makeGuest`, {
             headers: {
                 authorization: token,
             },
@@ -216,7 +216,8 @@ export const getArtworksByCategory = async (token, categoryId) => {
                 authorization: token,
             },
         });
-        return data.map(artwork => new ArtWork(artwork));
+        if (!data['data']) return [];
+        return data['data'].map(artwork => new ArtWork(artwork));
     } catch (error) {
         console.error(`Error fetching artworks for category ${categoryId}:`, error);
         throw error;
