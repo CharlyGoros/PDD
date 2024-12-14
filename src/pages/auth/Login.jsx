@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { login } from '../../services/api';
+import { Link,useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth'; 
+
 
 const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -11,11 +14,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(formData.email, formData.password);
+      let user = await login({formData});
+      if (user['role'] === 1) {
+        console.log('admin');
+        navigate('/admin');
+      } else {
+        console.log('guest');
+        navigate('/');
+      }
       
 
     } catch (err) {
-      alert('Login failed. Please try again.'+err);
+      console.error(err);
   };
 
 };

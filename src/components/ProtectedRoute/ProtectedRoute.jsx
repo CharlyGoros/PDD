@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 const ProtectedRoute = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
-
+  // console.log('user:', user);
   if (loading) {
     return <div className="loading">Loading...</div>;
   }

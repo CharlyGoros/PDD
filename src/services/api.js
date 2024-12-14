@@ -209,11 +209,18 @@ export const deleteAllArtworks = async (categoryId) => {
         throw error;
     }
 };
-export const login = async (email, password) => {
+export const login = async (formData) => {
     try {
-        await api.post(`/login`, { email, password });
+
+        const email = formData['formData']['email'];
+
+        const password = formData['formData']['password'];
+
+        const response = await api.post(`/login`, { email, password });
+
+        return response;
     } catch (error) {
-        console.error(`Error deleting all artworks in category`, error);
+        console.error(`Error logging in`, error);
         throw error;
     }
 };
