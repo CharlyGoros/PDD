@@ -14,7 +14,7 @@ export const createCategory = async (token) => {
     try {
         const { data } = await api.post('/categories', {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new Category(data);
@@ -24,13 +24,9 @@ export const createCategory = async (token) => {
     }
 };
 
-export const getCategoryById = async (token, id) => {
+export const getCategoryById = async (id) => {
     try {
-        const { data } = await api.get(`/categories/${id}`, {
-            headers: {
-                'authorization': 'Bearer ' + token,
-            },
-        });
+        const { data } = await api.get(`/categories/${id}`);
         return data;
     } catch (error) {
         console.error(`Error fetching category ${id}:`, error);
@@ -38,13 +34,9 @@ export const getCategoryById = async (token, id) => {
     }
 };
 
-export const getCategories = async (token) => {
+export const getCategories = async () => {
     try {
-        const { data } = await api.get('/categories', {
-            headers: {
-                authorization: token,
-            },
-        });
+        const { data } = await api.get('/categories');
         return data['data'].map(category => new Category(category));
     } catch (error) {
         console.error('Error fetching categories:', error);
@@ -56,7 +48,7 @@ export const updateCategory = async (token, id, updatedCategory) => {
     try {
         const { data } = await api.put(`/categories/${id}`, updatedCategory, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new Category(data);
@@ -70,7 +62,7 @@ export const deleteCategoryById = async (token, id) => {
     try {
         await api.delete(`/categories/${id}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {
@@ -83,7 +75,7 @@ export const deleteAllCategories = async (token) => {
     try {
         await api.delete('/categories', {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {
@@ -106,7 +98,7 @@ export const getUserById = async (token, id) => {
     try {
         const { data } = await api.get(`/users/${id}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new User(data);
@@ -133,7 +125,7 @@ export const updateUser = async (token, id, updatedUser) => {
     try {
         const { data } = await api.put(`/users/${id}`, updatedUser, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new User(data);
@@ -147,7 +139,7 @@ export const deleteUserById = async (token, id) => {
     try {
         await api.delete(`/users/${id}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {
@@ -160,7 +152,7 @@ export const deleteAllUsers = async (token) => {
     try {
         await api.delete('/users', {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {
@@ -204,12 +196,11 @@ export const makeUserGuest = async (token, id) => {
     }
 };
 
-
 export const createArtwork = async (token, categoryId, artworkData) => {
     try {
         const { data } = await api.post(`/categories/${categoryId}/artworks`, artworkData, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new ArtWork(data);
@@ -223,7 +214,7 @@ export const getArtworksByCategory = async (token, categoryId) => {
     try {
         const { data } = await api.get(`/categories/${categoryId}/artworks`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         if (!data['data']) return [];
@@ -238,7 +229,7 @@ export const getArtworkById = async (token, categoryId, artworkId) => {
     try {
         const { data } = await api.get(`/categories/${categoryId}/artworks/${artworkId}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new ArtWork(data);
@@ -252,7 +243,7 @@ export const updateArtwork = async (token, categoryId, artworkId, updatedArtwork
     try {
         const { data } = await api.put(`/categories/${categoryId}/artworks/${artworkId}`, updatedArtwork, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
         return new ArtWork(data);
@@ -266,7 +257,7 @@ export const deleteArtworkById = async (token, categoryId, artworkId) => {
     try {
         await api.delete(`/categories/${categoryId}/artworks/${artworkId}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {
@@ -279,7 +270,7 @@ export const deleteAllArtworks = async (token, categoryId) => {
     try {
         await api.delete(`/categories/${categoryId}/artworks`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
     } catch (error) {

@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 
 const CategoryDetails = () => {
     const { categoryId } = useParams();
-    const [categoryName, setCategoryName] = useState('');
+    const [category, setCategory] = useState('');
     const [artworks, setArtworks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,9 +15,9 @@ const CategoryDetails = () => {
     useEffect(() => {
         const fetchArtworks = async () => {
             try {
-                const category = await getCategoryById(token, categoryId);
-                setCategoryName(category['data']['name']); // Asume que el nombre de la categoría está en 'name'
-                setArtworks(category['data']['artworks']);
+                const category = await getCategoryById( categoryId);
+                setCategory(category['data']);
+                setArtworks(category['data']['artworks'] ??[]);
             } catch (err) {
                 setError(`Failed to fetch artworks. ${err}`);
             } finally {
@@ -56,7 +56,11 @@ const CategoryDetails = () => {
 
     return (
         <div className="container my-5">
-            <h1 className="text-center mb-5 text-light">{categoryName || 'Artworks'}</h1>
+            <h1 className="text-center mb-5 text-light">{category.title}</h1>
+            <div className='container-fluid mx-auto text-center'>
+            <img src={category.image} alt={category.title} style={{width:'200px'}} /></div>
+            <p className="text-center mb-5 text-light">{category.description}</p>
+            <h2 className="text-center mb-5 text-light">Artworks</h2>
             <div className="row g-4">
                 {artworks.map((artwork) => (
                     <div className="container" key={artwork._id}>

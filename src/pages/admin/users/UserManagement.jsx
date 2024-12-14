@@ -42,7 +42,7 @@ const UserManagement = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      await deleteUserById(userId);
+      await deleteUserById(token, userId);
       await loadUsers();
     } catch (err) {
       setError(err.message);
