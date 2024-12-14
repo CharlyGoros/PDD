@@ -1,0 +1,75 @@
+.artwork-management {
+  padding: 2rem;
+}
+
+.category-selector {
+  margin-bottom: 2rem;
+}
+
+.category-selector select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.artwork-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.artwork-item {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.artwork-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.artwork-details {
+  padding: 1rem;
+}
+
+.artwork-details h3 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.artwork-details p {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.artwork-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #333;
+}
+
+.artwork-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.artwork-actions button:first-child {
+  background-color: #646cff;
+  color: white;
+}
+
+.artwork-actions button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
