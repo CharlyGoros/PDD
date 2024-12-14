@@ -66,11 +66,27 @@ const CategoryDetails = () => {
                     <div className="container" key={artwork._id}>
                         <div className="row align-items-center pb-3">
                             <div className="col-md-4">
-                                <img
-                                    src={artwork.images[0]}
-                                    alt={artwork.title || 'Artwork image'}
-                                    style={{ width: '200px', height: '200px', objectFit: 'cover' }}
-                                />
+                            <div id="carouselExample" className="carousel slide">
+  <div className="carousel-inner">
+
+    {artwork.images.map((image, index) => (
+        <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+            <img src={image} className="d-block w-100" alt={artwork.title} />
+        </div>
+    ))}
+      
+    
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
+                               
                             </div>
 
                             <div className="col-md-8 text-light">
