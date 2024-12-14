@@ -8,9 +8,9 @@ const Navbar = () => {
       <div className="container">
         {/* Brand */}
         <Link className="navbar-brand" to="/">
-          Museum Name
+          Museo Humano
         </Link>
-        
+
         {/* Toggler for responsive menu */}
         <button
           className="navbar-toggler"
@@ -23,7 +23,7 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        
+
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
@@ -34,23 +34,23 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/collections">
-                Collections
+                Colecciones
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">
-                About
+                Sobre nosotros
               </Link>
             </li>
           </ul>
-          
+
           {/* Auth Links */}
           <div className="d-flex ms-3">
             <Link className="btn btn-outline-light me-2" to="/login">
-              Login
+              Inicar sesion
             </Link>
             <Link className="btn btn-primary" to="/register">
-              Register
+              Registrarse
             </Link>
           </div>
         </div>
