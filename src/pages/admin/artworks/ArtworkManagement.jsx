@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getCategories, getArtworksByCategory, createArtwork, updateArtwork, deleteArtworkById } from '../../../services/api';
 import ArtworkForm from './ArtworkForm';
+import useAuth from '../../../hooks/useAuth';
 import './ArtworkManagement.css';
 
 const ArtworkManagement = () => {
@@ -10,20 +11,20 @@ const ArtworkManagement = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingArtwork, setEditingArtwork] = useState(null);
-
+  const  {token} = useAuth();
   useEffect(() => {
     loadCategories();
-  }, []);
+  });
 
   useEffect(() => {
     if (selectedCategory) {
       loadArtworks(selectedCategory._id);
     }
-  }, [selectedCategory]);
+  });
 
   const loadCategories = async () => {
     try {
-      const data = await getCategories();
+      const data = await getCategories(token);
       setCategories(data);
       if (data.length > 0) {
         setSelectedCategory(data[0]);
@@ -37,7 +38,7 @@ const ArtworkManagement = () => {
 
   const loadArtworks = async (categoryId) => {
     try {
-      const data = await getArtworksByCategory(categoryId);
+      const data = await getArtworksByCategory(token,categoryId);
       setArtworks(data);
     } catch (err) {
       setError(err.message);

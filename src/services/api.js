@@ -10,9 +10,13 @@ const api = axios.create({
     },
 });
 
-export const createCategory = async () => {
+export const createCategory = async (token) => {
     try {
-        const { data } = await api.post('/categories');
+        const { data } = await api.post('/categories', {
+            headers: {
+                authorization: token,
+            },
+        });
         return new Category(data);
     } catch (error) {
         console.error('Error creating category:', error);
@@ -20,9 +24,13 @@ export const createCategory = async () => {
     }
 };
 
-export const getCategoryById = async (id) => {
+export const getCategoryById = async (token, id) => {
     try {
-        const { data } = await api.get(`/categories/${id}`);
+        const { data } = await api.get(`/categories/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new Category(data);
     } catch (error) {
         console.error(`Error fetching category ${id}:`, error);
@@ -32,22 +40,25 @@ export const getCategoryById = async (id) => {
 
 export const getCategories = async (token) => {
     try {
-        const response = await api.get('/categories', {
+        const { data } = await api.get('/categories', {
             headers: {
                 authorization: token,
             },
         });
-        console.log(response);
-        return response['data']['data'].map(category => new Category(category));
+        return data['data'].map(category => new Category(category));
     } catch (error) {
         console.error('Error fetching categories:', error);
         throw error;
     }
 };
 
-export const updateCategory = async (id, updatedCategory) => {
+export const updateCategory = async (token, id, updatedCategory) => {
     try {
-        const { data } = await api.put(`/categories/${id}`, updatedCategory);
+        const { data } = await api.put(`/categories/${id}`, updatedCategory, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new Category(data);
     } catch (error) {
         console.error(`Error updating category ${id}:`, error);
@@ -55,18 +66,26 @@ export const updateCategory = async (id, updatedCategory) => {
     }
 };
 
-export const deleteCategoryById = async (id) => {
+export const deleteCategoryById = async (token, id) => {
     try {
-        await api.delete(`/categories/${id}`);
+        await api.delete(`/categories/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error deleting category ${id}:`, error);
         throw error;
     }
 };
 
-export const deleteAllCategories = async () => {
+export const deleteAllCategories = async (token) => {
     try {
-        await api.delete('/categories');
+        await api.delete('/categories', {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error('Error deleting all categories:', error);
         throw error;
@@ -83,9 +102,13 @@ export const createUser = async (userData) => {
     }
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async (token, id) => {
     try {
-        const { data } = await api.get(`/users/${id}`);
+        const { data } = await api.get(`/users/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new User(data);
     } catch (error) {
         console.error(`Error fetching user ${id}:`, error);
@@ -106,9 +129,13 @@ export const getUsers = async (token) => {
     }
 };
 
-export const updateUser = async (id, updatedUser) => {
+export const updateUser = async (token, id, updatedUser) => {
     try {
-        const { data } = await api.put(`/users/${id}`, updatedUser);
+        const { data } = await api.put(`/users/${id}`, updatedUser, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new User(data);
     } catch (error) {
         console.error(`Error updating user ${id}:`, error);
@@ -116,45 +143,65 @@ export const updateUser = async (id, updatedUser) => {
     }
 };
 
-export const deleteUserById = async (id) => {
+export const deleteUserById = async (token, id) => {
     try {
-        await api.delete(`/users/${id}`);
+        await api.delete(`/users/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error deleting user ${id}:`, error);
         throw error;
     }
 };
 
-export const deleteAllUsers = async () => {
+export const deleteAllUsers = async (token) => {
     try {
-        await api.delete('/users');
+        await api.delete('/users', {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error('Error deleting all users:', error);
         throw error;
     }
 };
 
-export const makeUserAdmin = async (id) => {
+export const makeUserAdmin = async (token, id) => {
     try {
-        await api.post(`/users/${id}/makeAdmin`);
+        await api.post(`/users/${id}/makeAdmin`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error making user ${id} admin:`, error);
         throw error;
     }
 };
 
-export const makeUserGuest = async (id) => {
+export const makeUserGuest = async (token, id) => {
     try {
-        await api.post(`/users/${id}/makeGuest`);
+        await api.post(`/users/${id}/makeGuest`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error making user ${id} guest:`, error);
         throw error;
     }
 };
 
-export const createArtwork = async (categoryId, artworkData) => {
+export const createArtwork = async (token, categoryId, artworkData) => {
     try {
-        const { data } = await api.post(`/categories/${categoryId}/artworks`, artworkData);
+        const { data } = await api.post(`/categories/${categoryId}/artworks`, artworkData, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new ArtWork(data);
     } catch (error) {
         console.error(`Error creating artwork in category ${categoryId}:`, error);
@@ -162,9 +209,13 @@ export const createArtwork = async (categoryId, artworkData) => {
     }
 };
 
-export const getArtworksByCategory = async (categoryId) => {
+export const getArtworksByCategory = async (token, categoryId) => {
     try {
-        const { data } = await api.get(`/categories/${categoryId}/artworks`);
+        const { data } = await api.get(`/categories/${categoryId}/artworks`, {
+            headers: {
+                authorization: token,
+            },
+        });
         return data.map(artwork => new ArtWork(artwork));
     } catch (error) {
         console.error(`Error fetching artworks for category ${categoryId}:`, error);
@@ -172,9 +223,13 @@ export const getArtworksByCategory = async (categoryId) => {
     }
 };
 
-export const getArtworkById = async (categoryId, artworkId) => {
+export const getArtworkById = async (token, categoryId, artworkId) => {
     try {
-        const { data } = await api.get(`/categories/${categoryId}/artworks/${artworkId}`);
+        const { data } = await api.get(`/categories/${categoryId}/artworks/${artworkId}`, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new ArtWork(data);
     } catch (error) {
         console.error(`Error fetching artwork ${artworkId} in category ${categoryId}:`, error);
@@ -182,9 +237,13 @@ export const getArtworkById = async (categoryId, artworkId) => {
     }
 };
 
-export const updateArtwork = async (categoryId, artworkId, updatedArtwork) => {
+export const updateArtwork = async (token, categoryId, artworkId, updatedArtwork) => {
     try {
-        const { data } = await api.put(`/categories/${categoryId}/artworks/${artworkId}`, updatedArtwork);
+        const { data } = await api.put(`/categories/${categoryId}/artworks/${artworkId}`, updatedArtwork, {
+            headers: {
+                authorization: token,
+            },
+        });
         return new ArtWork(data);
     } catch (error) {
         console.error(`Error updating artwork ${artworkId} in category ${categoryId}:`, error);
@@ -192,18 +251,26 @@ export const updateArtwork = async (categoryId, artworkId, updatedArtwork) => {
     }
 };
 
-export const deleteArtworkById = async (categoryId, artworkId) => {
+export const deleteArtworkById = async (token, categoryId, artworkId) => {
     try {
-        await api.delete(`/categories/${categoryId}/artworks/${artworkId}`);
+        await api.delete(`/categories/${categoryId}/artworks/${artworkId}`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error deleting artwork ${artworkId} in category ${categoryId}:`, error);
         throw error;
     }
 };
 
-export const deleteAllArtworks = async (categoryId) => {
+export const deleteAllArtworks = async (token, categoryId) => {
     try {
-        await api.delete(`/categories/${categoryId}/artworks`);
+        await api.delete(`/categories/${categoryId}/artworks`, {
+            headers: {
+                authorization: token,
+            },
+        });
     } catch (error) {
         console.error(`Error deleting all artworks in category ${categoryId}:`, error);
         throw error;

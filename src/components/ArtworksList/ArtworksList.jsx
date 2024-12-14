@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ArtworksList.css';
 import { getArtworksByCategory } from '../../services/api';
+import useAuth from '../../hooks/useAuth';
 
 const ArtworksList = () => {
     const { categoryId } = useParams();
     const [artworks, setArtworks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { token } = useAuth();
 
     useEffect(() => {
         const fetchArtworks = async () => {
             try {
-                const response = await getArtworksByCategory(categoryId);
+                const response = await getArtworksByCategory(token, categoryId);
                 setArtworks(response);
             } catch (err) {
                 setError(`Failed to fetch artworks. ${err}`);
@@ -22,7 +24,7 @@ const ArtworksList = () => {
         };
 
         fetchArtworks();
-    }, [categoryId]);
+    }, [categoryId, token]);
 
     if (loading) {
         return (
