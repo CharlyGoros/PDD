@@ -1,8 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Opcional para agregar estilos personalizados
+import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css'; // Opcional para estilos personalizados
+import useAuth from '../../hooks/useAuth'; // Importamos el hook useAuth
 
 const Navbar = () => {
+  const { user, logout } = useAuth(); // Obtenemos el estado del usuario y la función logout
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // Llamamos a la función logout para limpiar el estado del usuario
+    navigate('/login'); // Redirigimos al login
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
       <div className="container">
@@ -46,12 +55,29 @@ const Navbar = () => {
 
           {/* Auth Links */}
           <div className="d-flex ms-3">
+<<<<<<< Updated upstream
             <Link className="btn btn-outline-light me-2" to="/login">
               Inicar sesion
             </Link>
             <Link className="btn btn-primary" to="/register">
               Registrarse
             </Link>
+=======
+            {!user ? (
+              <>
+                <Link className="btn btn-outline-light me-2" to="/login">
+                  Login
+                </Link>
+                <Link className="btn btn-primary" to="/register">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Log out
+              </button>
+            )}
+>>>>>>> Stashed changes
           </div>
         </div>
       </div>
