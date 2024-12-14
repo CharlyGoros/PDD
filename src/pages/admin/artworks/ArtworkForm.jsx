@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './ArtworkForm.css';
 
-const ArtworkForm = ({ onSubmit, initialData }) => {
+const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -45,6 +45,13 @@ const ArtworkForm = ({ onSubmit, initialData }) => {
   const removeImageField = (index) => {
     const newImages = formData.images.filter((_, i) => i !== index);
     setFormData({ ...formData, images: newImages });
+  };
+
+  const handleCancel = () => {
+    setFormData({ title: '', description: '', images: [''] });
+    if (onCancel) {
+      onCancel(); // Llamamos a la función pasada por props para manejar el estado en el componente padre.
+    }
   };
 
   return (
@@ -102,9 +109,20 @@ const ArtworkForm = ({ onSubmit, initialData }) => {
           </button>
         )}
       </div>
-      <button type="submit" className="submit-button">
-        {initialData ? 'Update Artwork' : 'Create Artwork'}
-      </button>
+      <div className="button-group">
+        <button type="submit" className="submit-button">
+          {initialData ? 'Update Artwork' : 'Create Artwork'}
+        </button>
+        {initialData && (
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancel}
+          >
+            Cancelar
+          </button>
+        )}
+      </div>
     </form>
   );
 };
@@ -116,6 +134,7 @@ ArtworkForm.propTypes = {
     description: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
   }),
+  onCancel: PropTypes.func, // Nueva propiedad para manejar la acción de cancelar
 };
 
 export default ArtworkForm;
