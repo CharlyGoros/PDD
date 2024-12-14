@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchCategories, fetchArtWorksByCategory, createArtwork, updateArtwork, deleteArtwork } from '../../../services/api';
+import { getCategories, getArtworksByCategory, createArtwork, updateArtwork, deleteArtworkById } from '../../../services/api';
 import ArtworkForm from './ArtworkForm';
 import './ArtworkManagement.css';
 
@@ -23,7 +23,7 @@ const ArtworkManagement = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await fetchCategories();
+      const data = await getCategories();
       setCategories(data);
       if (data.length > 0) {
         setSelectedCategory(data[0]);
@@ -37,7 +37,7 @@ const ArtworkManagement = () => {
 
   const loadArtworks = async (categoryId) => {
     try {
-      const data = await fetchArtWorksByCategory(categoryId);
+      const data = await getArtworksByCategory(categoryId);
       setArtworks(data);
     } catch (err) {
       setError(err.message);
@@ -68,7 +68,7 @@ const ArtworkManagement = () => {
     if (!window.confirm('Are you sure you want to delete this artwork?')) return;
     
     try {
-      await deleteArtwork(selectedCategory._id, artworkId);
+      await deleteArtworkById(selectedCategory._id, artworkId);
       await loadArtworks(selectedCategory._id);
     } catch (err) {
       setError(err.message);
@@ -117,3 +117,4 @@ const ArtworkManagement = () => {
     </div>
   );
 };
+export default ArtworkManagement;

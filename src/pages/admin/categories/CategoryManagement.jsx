@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchCategories, createCategory, updateCategory, deleteCategory } from '../../../services/api';
+import { getCategories, createCategory, updateCategory, deleteCategoryById } from '../../../services/api';
 import CategoryForm from './CategoryForm';
 import './CategoryManagement.css';
 
@@ -15,7 +15,7 @@ const CategoryManagement = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await fetchCategories();
+      const data = await getCategories();
       setCategories(data);
     } catch (err) {
       setError(err.message);
@@ -48,7 +48,7 @@ const CategoryManagement = () => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     
     try {
-      await deleteCategory(categoryId);
+      await deleteCategoryById(categoryId);
       await loadCategories();
     } catch (err) {
       setError(err.message);
@@ -85,3 +85,4 @@ const CategoryManagement = () => {
     </div>
   );
 };
+export default CategoryManagement;

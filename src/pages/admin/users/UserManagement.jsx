@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchUsers, updateUserRole, deleteUser } from '../../../services/api';
+import {  getUsers, makeUserAdmin, deleteUserById } from '../../../services/api';
 import './UserManagement.css';
 
 const UserManagement = () => {
@@ -13,7 +13,7 @@ const UserManagement = () => {
 
   const loadUsers = async () => {
     try {
-      const data = await fetchUsers();
+      const data = await getUsers();
       setUsers(data);
     } catch (err) {
       setError(err.message);
@@ -24,7 +24,7 @@ const UserManagement = () => {
 
   const handleRoleChange = async (userId, makeAdmin) => {
     try {
-      await updateUserRole(userId, makeAdmin);
+      await makeUserAdmin(userId, makeAdmin);
       await loadUsers();
     } catch (err) {
       setError(err.message);
@@ -35,7 +35,7 @@ const UserManagement = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     
     try {
-      await deleteUser(userId);
+      await deleteUserById(userId);
       await loadUsers();
     } catch (err) {
       setError(err.message);
@@ -86,3 +86,4 @@ const UserManagement = () => {
     </div>
   );
 };
+export default UserManagement;

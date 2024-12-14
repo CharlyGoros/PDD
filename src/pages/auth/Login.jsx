@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { login } from '../../services/api';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +10,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Implement login logic
-    console.log('Login attempt:', formData);
+    try {
+      await login(formData.email, formData.password);
+      
+
+    } catch (err) {
+      alert('Login failed. Please try again.'+err);
   };
+
+};
 
   const handleChange = (e) => {
     setFormData({
@@ -52,11 +59,11 @@ const Login = () => {
           <button type="submit" className="btn btn-primary w-100">Login</button>
         </form>
         <p className="text-center mt-3">
-          Don't have an account? <Link to="/register" className="text-primary">Register here</Link>
+          Dont have an account? <Link to="/register" className="text-primary">Register here</Link>
         </p>
       </div>
     </div>
   );
-};
+}; 
 
 export default Login;

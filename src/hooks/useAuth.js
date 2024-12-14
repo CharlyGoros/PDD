@@ -1,15 +1,15 @@
 import { create } from 'zustand';
-import { loginUser, registerUser } from '../services/api';
+import { login, createUser } from '../services/api';
 
 const useAuth = create((set) => ({
   user: null,
   loading: false,
   error: null,
-  
+
   login: async (credentials) => {
     set({ loading: true, error: null });
     try {
-      const user = await loginUser(credentials);
+      const user = await login(credentials);
       set({ user, loading: false });
       return user;
     } catch (error) {
@@ -21,7 +21,7 @@ const useAuth = create((set) => ({
   register: async (userData) => {
     set({ loading: true, error: null });
     try {
-      const user = await registerUser(userData);
+      const user = await createUser(userData);
       set({ user, loading: false });
       return user;
     } catch (error) {

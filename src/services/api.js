@@ -209,3 +209,11 @@ export const deleteAllArtworks = async (categoryId) => {
         throw error;
     }
 };
+export const login = async (email, password) => {
+    try {
+        await api.post(`/login`, { email, password });
+    } catch (error) {
+        console.error(`Error deleting all artworks in category`, error);
+        throw error;
+    }
+};
