@@ -28,10 +28,10 @@ export const getCategoryById = async (token, id) => {
     try {
         const { data } = await api.get(`/categories/${id}`, {
             headers: {
-                authorization: token,
+                'authorization': 'Bearer ' + token,
             },
         });
-        return new Category(data);
+        return data;
     } catch (error) {
         console.error(`Error fetching category ${id}:`, error);
         throw error;

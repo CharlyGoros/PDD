@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './ArtworksList.css';
-import { getArtworksByCategory } from '../../services/api';
+import './CategoryDetails.css';
+import {  getCategoryById } from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 
-const ArtworksList = () => {
+const CategoryDetails = () => {
     const { categoryId } = useParams();
     const [artworks, setArtworks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,8 +14,9 @@ const ArtworksList = () => {
     useEffect(() => {
         const fetchArtworks = async () => {
             try {
-                const response = await getArtworksByCategory(token, categoryId);
-                setArtworks(response);
+                const category = await getCategoryById(token, categoryId);
+                console.log(category['data']['artworks']);
+                setArtworks(category['data']['artworks']);
             } catch (err) {
                 setError(`Failed to fetch artworks. ${err}`);
             } finally {
@@ -59,12 +60,12 @@ const ArtworksList = () => {
                     <div className="container" key={artwork._id}>
                         <div className="row align-items-center pb-3">
                         <div className="col-md-4">
-    <img 
-        src={artwork.images[0]} 
-        alt={artwork.title || "Artwork image"} 
-        style={{ width: '200px', height: '200px', objectFit: 'cover' }} 
-    />
-</div>
+                            <img 
+                                src={artwork.images[0]} 
+                                alt={artwork.title || "Artwork image"} 
+                                style={{ width: '200px', height: '200px', objectFit: 'cover' }} 
+                            />
+                        </div>
 
                             <div className="col-md-8 text-light">
                                 <h5 className="text-uppercase text-light">{artwork.title}</h5>
@@ -79,4 +80,4 @@ const ArtworksList = () => {
     
 };
 
-export default ArtworksList;
+export default CategoryDetails;

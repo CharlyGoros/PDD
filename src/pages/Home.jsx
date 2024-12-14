@@ -44,14 +44,14 @@ function Home() {
   return (
     <div className="container my-5">
       <header className="text-center mb-5">
-        <h1 className="display-4 text-dark">Welcome to Our Museum</h1>
-        <p className="text-muted fs-5">
+        <h1 className="display-4 text-light">Welcome to Our Museum</h1>
+        <p className="text-light fs-5">
           Explore our diverse collection of artworks and exhibitions
         </p>
       </header>
-      <div className="row g-4">
+      <div className="row g-5">
         {categories.map((category) => (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={category._id}>
+          <div className="col-4" key={category._id}>
             <CategoryCard category={category} />
           </div>
         ))}

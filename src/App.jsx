@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navigation/Navbar';
 import Footer from './components/Footer/Footer';
-import ArtworksList from './components/ArtworksList/ArtworksList';
+import CategoryDetails from './components/CategoryCard/CategoryDetails';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -23,7 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/categories/:categoryId" element={<ArtworksList />} />
+            <Route path="/categories/:categoryId" element={<CategoryDetails />} />
             <Route path="/about" element={<About />} />
 
             <Route
