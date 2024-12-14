@@ -52,7 +52,6 @@ export const updateCategory = async (id, updatedCategory) => {
 export const deleteCategoryById = async (id) => {
     try {
         await api.delete(`/categories/${id}`);
-        console.log(`Category ${id} deleted successfully.`);
     } catch (error) {
         console.error(`Error deleting category ${id}:`, error);
         throw error;
@@ -62,7 +61,6 @@ export const deleteCategoryById = async (id) => {
 export const deleteAllCategories = async () => {
     try {
         await api.delete('/categories');
-        console.log('All categories deleted successfully.');
     } catch (error) {
         console.error('Error deleting all categories:', error);
         throw error;
@@ -71,7 +69,6 @@ export const deleteAllCategories = async () => {
 
 export const createUser = async (userData) => {
     try {
-        console.log('userData:', userData);
         await api.post('/users', userData);
         return;
     } catch (error) {
@@ -91,13 +88,12 @@ export const getUserById = async (id) => {
 };
 export const getUsers = async (token) => {
     try {
-        console.log('token:', token);
         const { data } = await api.get('/users', {
             headers: {
                 authorization: token,
             },
         });
-        return data.map(user => new User(user));
+        return data['data'].map(user => new User(user));
     } catch (error) {
         console.error('Error fetching users:', error);
         throw error;
@@ -117,7 +113,6 @@ export const updateUser = async (id, updatedUser) => {
 export const deleteUserById = async (id) => {
     try {
         await api.delete(`/users/${id}`);
-        console.log(`User ${id} deleted successfully.`);
     } catch (error) {
         console.error(`Error deleting user ${id}:`, error);
         throw error;
@@ -127,7 +122,6 @@ export const deleteUserById = async (id) => {
 export const deleteAllUsers = async () => {
     try {
         await api.delete('/users');
-        console.log('All users deleted successfully.');
     } catch (error) {
         console.error('Error deleting all users:', error);
         throw error;
@@ -137,7 +131,6 @@ export const deleteAllUsers = async () => {
 export const makeUserAdmin = async (id) => {
     try {
         await api.post(`/users/${id}/makeAdmin`);
-        console.log(`User ${id} updated to admin.`);
     } catch (error) {
         console.error(`Error making user ${id} admin:`, error);
         throw error;
@@ -147,7 +140,6 @@ export const makeUserAdmin = async (id) => {
 export const makeUserGuest = async (id) => {
     try {
         await api.post(`/users/${id}/makeGuest`);
-        console.log(`User ${id} updated to guest.`);
     } catch (error) {
         console.error(`Error making user ${id} guest:`, error);
         throw error;
@@ -197,7 +189,6 @@ export const updateArtwork = async (categoryId, artworkId, updatedArtwork) => {
 export const deleteArtworkById = async (categoryId, artworkId) => {
     try {
         await api.delete(`/categories/${categoryId}/artworks/${artworkId}`);
-        console.log(`Artwork ${artworkId} in category ${categoryId} deleted successfully.`);
     } catch (error) {
         console.error(`Error deleting artwork ${artworkId} in category ${categoryId}:`, error);
         throw error;
@@ -207,7 +198,6 @@ export const deleteArtworkById = async (categoryId, artworkId) => {
 export const deleteAllArtworks = async (categoryId) => {
     try {
         await api.delete(`/categories/${categoryId}/artworks`);
-        console.log(`All artworks in category ${categoryId} deleted successfully.`);
     } catch (error) {
         console.error(`Error deleting all artworks in category ${categoryId}:`, error);
         throw error;

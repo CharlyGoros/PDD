@@ -7,16 +7,15 @@ const UserManagement = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
   useEffect(() => {
     loadUsers();
-  }, []);
+  });
 
-  const { token } = useAuth();
   const loadUsers = async () => {
     try {
-      const response = await getUsers(token);
-      console.log(response);
-      setUsers(response['data']);
+      const users = await getUsers(token);
+      setUsers(users);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -60,8 +59,8 @@ const UserManagement = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {users.map((user) => (
+          <tbody>{
+            users.map((user) => (
               <tr key={user._id}>
                 <td>{user.name} {user.lastName}</td>
                 <td>{user.email}</td>

@@ -10,9 +10,6 @@ export class User {
     this.lastName = lastName;
     this.email = email;
     this.age = age;
-    if (!Object.values(Role).includes(role)) {
-      throw new Error(`Invalid role: ${role}`);
-    }
     this.role = role;
   }
 

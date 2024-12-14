@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/Admin/Dashboard';
-import UserManagement from './pages/admin/users/UserManagement';
+import UserManagement from './pages/Admin/users/UserManagement';
 import CategoryManagement from './pages/Admin/categories/CategoryManagement';
 import ArtworkManagement from './pages/Admin/artworks/ArtworkManagement';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';

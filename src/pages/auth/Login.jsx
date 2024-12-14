@@ -16,10 +16,8 @@ const Login = () => {
     try {
       let user = await login({formData});
       if (user['role'] === 1) {
-        console.log('admin');
         navigate('/admin');
       } else {
-        console.log('guest');
         navigate('/');
       }
       
