@@ -10,9 +10,12 @@ const api = axios.create({
     },
 });
 
-export const createCategory = async (token) => {
+export const createCategory = async (token, categoryData) => {
     try {
-        const { data } = await api.post('/categories', {
+        console.log(token);
+        console.log(categoryData);
+
+        const { data } = await api.post('/categories', categoryData, {
             headers: {
                 'authorization': 'Bearer ' + token,
             },
@@ -180,7 +183,6 @@ export const makeUserAdmin = async (token, id) => {
 
 export const makeUserGuest = async (token, id) => {
     try {
-        console.log(token);
         await api.put(
             `/users/${id}/makeGuest`,
             {},

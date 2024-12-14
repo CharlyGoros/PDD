@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { getCategories, createCategory, updateCategory, deleteCategoryById } from '../../../services/api';
 import CategoryForm from './CategoryForm';
 import './CategoryManagement.css';
+import useAuth from '../../../hooks/useAuth';
 
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingCategory, setEditingCategory] = useState(null);
-
+const {token} = useAuth();
   useEffect(() => {
     loadCategories();
   }, []); // Se ejecuta solo una vez al montar el componente
@@ -28,7 +29,7 @@ const CategoryManagement = () => {
 
   const handleCreateCategory = async (categoryData) => {
     try {
-      await createCategory(categoryData);
+      await createCategory(token,categoryData);
       await loadCategories();
     } catch (err) {
       setError(err.message);
@@ -37,7 +38,7 @@ const CategoryManagement = () => {
 
   const handleUpdateCategory = async (categoryId, categoryData) => {
     try {
-      await updateCategory(categoryId, categoryData);
+      await updateCategory(token,categoryId, categoryData);
       await loadCategories();
       setEditingCategory(null);
     } catch (err) {
@@ -49,7 +50,7 @@ const CategoryManagement = () => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
 
     try {
-      await deleteCategoryById(categoryId);
+      await deleteCategoryById(token,categoryId);
       await loadCategories();
     } catch (err) {
       setError(err.message);
@@ -71,7 +72,7 @@ const CategoryManagement = () => {
           (data) => handleUpdateCategory(editingCategory._id, data) : 
           handleCreateCategory}
         initialData={editingCategory}
-        onCancel={handleCancelEdit} // Manejo del botón Cancelar
+        onCancel={handleCancelEdit} 
       />
       <div className="category-list">
         {categories.map((category) => (
