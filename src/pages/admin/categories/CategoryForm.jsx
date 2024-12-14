@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './CategoryForm.css';
 
-const CategoryForm = ({ onSubmit, initialData }) => {
+const CategoryForm = ({ onSubmit, initialData, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -30,6 +30,13 @@ const CategoryForm = ({ onSubmit, initialData }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleCancel = () => {
+    setFormData({ title: '', description: '', image: '' });
+    if (onCancel) {
+      onCancel(); // Llamamos a la función para alternar entre edición y creación
+    }
   };
 
   return (
@@ -66,9 +73,20 @@ const CategoryForm = ({ onSubmit, initialData }) => {
           required
         />
       </div>
-      <button type="submit" className="submit-button">
-        {initialData ? 'Update Category' : 'Create Category'}
-      </button>
+      <div className="button-group">
+        <button type="submit" className="submit-button">
+          {initialData ? 'Update Category' : 'Create Category'}
+        </button>
+        {initialData && (
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancel}
+          >
+            Cancelar
+          </button>
+        )}
+      </div>
     </form>
   );
 };
@@ -80,6 +98,7 @@ CategoryForm.propTypes = {
     description: PropTypes.string,
     image: PropTypes.string,
   }),
+  onCancel: PropTypes.func, // Nueva propiedad para manejar la acción de cancelar
 };
 
 export default CategoryForm;

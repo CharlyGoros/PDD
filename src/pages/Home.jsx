@@ -44,9 +44,9 @@ function Home() {
   return (
     <div className="container my-5">
       <header className="text-center mb-5">
-        <h1 className="display-4 text-light">Bienvenido al museo del hombre</h1>
+        <h1 className="display-4 text-light">Bienvenidos a Nuestro Museo</h1>
         <p className="text-light fs-5">
-          Explora nuestra gama de colecciones y obras de arte
+        Explore nuestra diversa colección de obras de arte y exposiciones.
         </p>
       </header>
       <div className="row g-5">

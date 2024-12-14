@@ -11,9 +11,11 @@ const CategoryManagement = () => {
 
   useEffect(() => {
     loadCategories();
-  });
+  }, []); // Se ejecuta solo una vez al montar el componente
 
   const loadCategories = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await getCategories();
       setCategories(data);
@@ -28,7 +30,6 @@ const CategoryManagement = () => {
     try {
       await createCategory(categoryData);
       await loadCategories();
-      setEditingCategory(null);
     } catch (err) {
       setError(err.message);
     }
@@ -46,7 +47,7 @@ const CategoryManagement = () => {
 
   const handleDeleteCategory = async (categoryId) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
-    
+
     try {
       await deleteCategoryById(categoryId);
       await loadCategories();
@@ -55,17 +56,22 @@ const CategoryManagement = () => {
     }
   };
 
+  const handleCancelEdit = () => {
+    setEditingCategory(null);
+  };
+
   if (loading) return <div className="loading">Loading categories...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="category-management">
       <h2>Category Management</h2>
-      <CategoryForm 
+      <CategoryForm
         onSubmit={editingCategory ? 
           (data) => handleUpdateCategory(editingCategory._id, data) : 
           handleCreateCategory}
         initialData={editingCategory}
+        onCancel={handleCancelEdit} // Manejo del botón Cancelar
       />
       <div className="category-list">
         {categories.map((category) => (
@@ -85,4 +91,5 @@ const CategoryManagement = () => {
     </div>
   );
 };
+
 export default CategoryManagement;

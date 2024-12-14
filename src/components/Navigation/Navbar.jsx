@@ -37,7 +37,7 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+                Inicio
               </Link>
             </li>
             <li className="nav-item">
@@ -52,10 +52,10 @@ const Navbar = () => {
             {!user ? (
               <>
                 <Link className="btn btn-outline-light me-2" to="/login">
-                  Login
+                  Iniciar Sesion
                 </Link>
                 <Link className="btn btn-primary" to="/register">
-                  Register
+                  Registrar
                 </Link>
               </>
             ) : (
@@ -70,7 +70,7 @@ const Navbar = () => {
                   </button>
                 )}
                 <button className="btn btn-danger" onClick={handleLogout}>
-                  Log out
+                  Cerrar Sesion
                 </button>
               </>
             )}
