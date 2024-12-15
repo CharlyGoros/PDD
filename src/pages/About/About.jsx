@@ -7,7 +7,7 @@ const About = () => {
             <div className="row align-items-center">
                 <div className="col-md-6">
                     <img
-                        src="https://via.placeholder.com/500x300"
+                        src="https://www.britishmuseum.org/sites/default/files/styles/uncropped_huge/public/2019-11/07-11-2019%2012.05.03.jpg?itok=KtHRpKrh"
                         alt="Museo Humano"
                         className="img-fluid rounded shadow"
                     />
