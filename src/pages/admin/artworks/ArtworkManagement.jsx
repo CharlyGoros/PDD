@@ -108,7 +108,7 @@ const ArtworkManagement = () => {
 
   return (
     <div className="artwork-management">
-      <h2>Artwork Management</h2>
+      <h2>Gestión de obras de arte</h2>
       <div className="category-selector">
         <select
           value={selectedCategory?._id || ''}
@@ -131,7 +131,7 @@ const ArtworkManagement = () => {
         onCancel={handleCancelEdit}
       />
       {loadingArtworks ? (
-        <div className="loading">Loading artworks...</div>
+        <div className="loading">Cargando obras de arte...</div>
       ) : (
         <div className="artwork-list">
           {artworks.map((artwork) => (
@@ -142,8 +142,8 @@ const ArtworkManagement = () => {
                 <p>{artwork.description}</p>
               </div>
               <div className="artwork-actions">
-                <button onClick={() => setEditingArtwork(artwork)}>Edit</button>
-                <button onClick={() => handleDeleteArtwork(artwork._id)}>Delete</button>
+                <button onClick={() => setEditingArtwork(artwork)}>Editar</button>
+                <button onClick={() => handleDeleteArtwork(artwork._id)}>Eliminar</button>
               </div>
             </div>
           ))}

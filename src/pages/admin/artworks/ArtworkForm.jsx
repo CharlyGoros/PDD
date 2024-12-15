@@ -57,7 +57,7 @@ const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
   return (
     <form onSubmit={handleSubmit} className="artwork-form">
       <div className="form-group">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">Titulo</label>
         <input
           type="text"
           id="title"
@@ -68,7 +68,7 @@ const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Descripcion</label>
         <textarea
           id="description"
           name="description"
@@ -78,7 +78,7 @@ const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
         />
       </div>
       <div className="form-group">
-        <label>Images</label>
+        <label>Imagenes</label>
         {formData.images.map((image, index) => (
           <div key={index} className="image-input-group">
             <input
@@ -94,7 +94,7 @@ const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
                 onClick={() => removeImageField(index)}
                 className="remove-image"
               >
-                Remove
+                Eliminar
               </button>
             )}
           </div>
@@ -105,7 +105,7 @@ const ArtworkForm = ({ onSubmit, initialData, onCancel }) => {
             onClick={addImageField}
             className="add-image"
           >
-            Add Image
+            Añadir Imagen
           </button>
         )}
       </div>
