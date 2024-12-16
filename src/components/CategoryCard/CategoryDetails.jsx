@@ -46,52 +46,63 @@ const CategoryDetails = () => {
         );
     }
 
-    if (artworks.length === 0) {
-        return (
-            <div className="alert alert-info text-center" role="alert">
-                No artworks found.
-            </div>
-        );
-    }
-
     return (
         <div className="container my-5">
-            <h1 className="text-center mb-5 text-light">{category.title}</h1>
-            <div className='container-fluid mx-auto text-center'>
-                <img src={category.image} alt={category.title} style={{ width: '200px' }} /></div>
-            <p className="text-center mb-5 text-light">{category.description}</p>
+            {/* Imagen de fondo con el título */}
+            <div className="category-header position-relative mb-5">
+                <img
+                    src={category.image}
+                    alt={category.title}
+                    className="img-fluid category-header-image"
+                />
+                <div className="category-title-overlay">
+                    <h1 className="category-title">{category.title}</h1>
+                </div>
+            </div>
+
+            {/* Obras de Arte */}
             <h2 className="text-center mb-5 text-light">Nuestras Obras De Arte</h2>
             <div className="row g-4">
                 {artworks.map((artwork) => (
-                    <div className="container" key={artwork._id}>
-                        <div className="row align-items-center pb-3">
-                            <div className="col-md-4">
-                                <div id="carouselExample" className="carousel slide">
-                                    <div className="carousel-inner">
-
-                                        {artwork.images.map((image, index) => (
-                                            <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                                                <img src={image} className="d-block w-100" alt={artwork.title} />
-                                            </div>
-                                        ))}
-
-
-                                    </div>
-                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Previous</span>
-                                    </button>
-                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Next</span>
-                                    </button>
+                    <div className="col-md-6 col-lg-4" key={artwork._id}>
+                        <div className="card artwork-card shadow-sm">
+                            <div id={`carousel-${artwork._id}`} className="carousel slide" data-bs-ride="carousel">
+                                <div className="carousel-inner">
+                                    {artwork.images.map((image, index) => (
+                                        <div
+                                            key={index}
+                                            className={`carousel-item ${index === 0 ? 'active' : ''}`}
+                                        >
+                                            <img
+                                                src={image}
+                                                className="d-block w-100 artwork-image"
+                                                alt={artwork.title}
+                                            />
+                                        </div>
+                                    ))}
                                 </div>
-
+                                <button
+                                    className="carousel-control-prev"
+                                    type="button"
+                                    data-bs-target={`#carousel-${artwork._id}`}
+                                    data-bs-slide="prev"
+                                >
+                                    <span className="carousel-control-prev-icon"></span>
+                                    <span className="visually-hidden">Previous</span>
+                                </button>
+                                <button
+                                    className="carousel-control-next"
+                                    type="button"
+                                    data-bs-target={`#carousel-${artwork._id}`}
+                                    data-bs-slide="next"
+                                >
+                                    <span className="carousel-control-next-icon"></span>
+                                    <span className="visually-hidden">Next</span>
+                                </button>
                             </div>
-
-                            <div className="col-md-8 text-light">
-                                <h5 className="text-uppercase text-light">{artwork.title}</h5>
-                                <p>{artwork.description}</p>
+                            <div className="card-body text-center">
+                                <h5 className="card-title text-uppercase">{artwork.title}</h5>
+                                <p className="card-text">{artwork.description}</p>
                             </div>
                         </div>
                     </div>

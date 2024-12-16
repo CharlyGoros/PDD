@@ -1,18 +1,66 @@
-.card {
-    border: none;
-    background-color: #f8f9fa;
+/* Contenedor de la imagen principal con el título superpuesto */
+.category-header {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.card-title {
+.category-header-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    filter: brightness(60%);
+}
+
+.category-title-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.category-title {
+    font-size: 3rem;
     font-weight: bold;
-    color: #343a40;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+/* Tarjetas de obras de arte */
+.artwork-card {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.artwork-card:hover {
+    transform: translateY(-5px);
+}
+
+.artwork-image {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: auto; /* Mantiene la altura automáticamente */
+    max-height: 300px; /* Establece una altura máxima */
+    object-fit: contain; /* Ajusta la imagen sin recortarla ni distorsionarla */
+    border-top-left-radius: 10px; /* Redondeo para la parte superior */
+    border-top-right-radius: 10px;
+    background-color: #1c1c1c; /* Fondo oscuro para dar consistencia */
+}
+
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .card-text {
-    color: #6c757d;
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
+    font-size: 0.9rem;
+    color: #d3d3d3;
 }

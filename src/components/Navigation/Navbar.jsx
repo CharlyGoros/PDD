@@ -63,13 +63,13 @@ const Navbar = () => {
                 {/* Botón "Abrir Panel" solo visible para usuarios con rol "admin" */}
                 {user.role === 1 && (
                   <button
-                    className="btn btn-warning me-2"
+                    className="btn btn-outline-secondary me-2"
                     onClick={() => navigate('/admin/users')}
                   >
                     Abrir Panel
                   </button>
                 )}
-                <button className="btn btn-danger" onClick={handleLogout}>
+                <button className="btn btn-outline-danger" onClick={handleLogout}>
                   Cerrar Sesion
                 </button>
               </>
